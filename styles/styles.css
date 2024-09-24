@@ -1,1 +1,82 @@
 /* CSS */
+
+.header {
+    display: flex;
+    align-items: center;
+    /* dit haalt de 2 links uit elkaar */
+    justify-content: space-between;
+
+    height: 4em;
+    width: 100%;
+
+    /* dit zorgt ervoor dat de header van links boven tot rechts boven in beslag neemt */
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background-color: #0091ff;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+/* de eerste link wordt in het midden geplaatst */
+header a:first-child {
+    position: relative;
+    left: 45%;
+}
+
+/* de 2de helemaal rechts */
+header a:last-child {
+    margin-left: auto;
+    padding-right: 1em;
+}
+
+
+nav{
+    background-color: blueviolet;
+    position: absolute;
+    /* de nav begint waar de header Eindigt */
+    top: 4em;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    justify-content: center;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    display: inline;
+    margin: 1.2em;
+}
+
+.dates {
+    background-color:rgb(225, 130, 14);
+    display: flex;
+    /* 2de header begint waar de nav Eindigt */
+    position: fixed;
+    top: 7em;
+    left: 0;
+    right: 0;
+    
+    overflow-y: hidden;
+    overflow-x: scroll;
+
+    justify-content: center;
+
+}
+
+/* select de a tag binnen de dates class */
+.dates > a {
+    margin: 10px; /* Space between items */
+    padding: 20px; /* Padding inside items */
+    border-radius: 5px; /* Rounded corners */
+    width: 100px; /* Set a width for each item */
+    text-align: center; /* Center text inside items */
+}
