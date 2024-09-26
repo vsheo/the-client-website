@@ -59,9 +59,6 @@ li {
     margin-left: 2%;
 }
 
-.boel {
-    position: static;
-}
 .dates {
     background-color:rgb(225, 130, 14);
     display: flex;
