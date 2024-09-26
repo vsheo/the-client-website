@@ -1,82 +1,113 @@
 /* CSS */
+/* hover over links laat zien dat erop geclicked kan worden */
 
 .header {
+    background-color: #0091ff;
     display: flex;
+    /* de header blijft op het scherm */
+    position: sticky;
     align-items: center;
     /* dit haalt de 2 links uit elkaar */
     justify-content: space-between;
 
     height: 4em;
     width: 100%;
-
-    /* dit zorgt ervoor dat de header van links boven tot rechts boven in beslag neemt */
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    background-color: #0091ff;
 }
 
 a {
     text-decoration: none;
-    color: white;
+    color: black;
 }
 
-/* de eerste link wordt in het midden geplaatst */
-header a:first-child {
+/* de eerste link, in de header class, wordt in het midden geplaatst */
+.header a:first-child {
     position: relative;
     left: 45%;
 }
 
 /* de 2de helemaal rechts */
-header a:last-child {
+.header a:last-child {
     margin-left: auto;
     padding-right: 1em;
 }
 
 
-nav{
+.header_nav {
     background-color: blueviolet;
-    position: absolute;
-    /* de nav begint waar de header Eindigt */
-    top: 4em;
-    left: 0;
-    right: 0;
-
     display: flex;
-    justify-content: center;
+    position: sticky;
+    flex-direction: column;
+    justify-content: space-between;
+    /* width: 100%; */
+    position: sticky;
+    
+    /* de nav begint waar de header Eindigt */
+    /* top: 4em;
+    left: 0;
+    right: 0; */
+
 }
 
 ul {
     list-style: none;
 }
 
+/* dit zet de li in de nav naast elkaar en in het midden */
 li {
     display: inline;
-    margin: 1.2em;
+    padding: 0.5em;
+    margin-left: 2%;
 }
 
+.boel {
+    position: static;
+}
 .dates {
     background-color:rgb(225, 130, 14);
     display: flex;
-    /* 2de header begint waar de nav Eindigt */
-    position: fixed;
-    top: 7em;
-    left: 0;
-    right: 0;
     
+    /* links en rechts scrollen toelaten */
     overflow-y: hidden;
     overflow-x: scroll;
-
-    justify-content: center;
-
 }
 
-/* select de a tag binnen de dates class */
-.dates > a {
-    margin: 10px; /* Space between items */
-    padding: 20px; /* Padding inside items */
-    border-radius: 5px; /* Rounded corners */
-    width: 100px; /* Set a width for each item */
-    text-align: center; /* Center text inside items */
+/* select de li binnen de dates class */
+.dates > li {
+    /* spatie tussen de dagen */
+    padding: 1em;
+
+    justify-self: flex-start;
+}
+
+main {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: 1fr;
+    grid-column: 2/3;
+    grid-row: 1/-1;
+}
+
+.programmas {
+    height: min-content;
+}
+
+.programma_card {
+    /* border: 1px solid black; */
+    border-radius: 1em;
+    box-shadow: 0.1em 0.2em 0.2em  0.2em gray;
+}
+
+.now_playing {
+    background-color: green;
+}
+
+
+
+
+.footer_nav {
+    background-color: chocolate;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
 }
