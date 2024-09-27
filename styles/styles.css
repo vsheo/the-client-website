@@ -80,8 +80,21 @@ main {
     display: grid;
     grid-template-columns: min-content 1fr;
     grid-template-rows: 1fr;
-    grid-column: 2/3;
+    grid-column: 2/-1;
     grid-row: 1/-1;
+    grid-template-areas:
+    "time article"
+    "time article"
+    ;
+    gap: 1em;
+}
+
+.time_table {
+    grid-area: time;
+}
+
+.article {
+    grid-area: article;
 }
 
 .programmas {
