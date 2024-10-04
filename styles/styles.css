@@ -121,38 +121,51 @@ main {
     border-radius: 1em;
     box-shadow: 0.1em 0.2em 0.2em  0.2em gray;
     /* gebruik de ruimte die nodig is, maar niet meer.(m.b.v min width op de tekst grid area) */
-    max-width: fit-content;
+    /* max-width: fit-content; */
+    max-width: 17em;
+    margin: 0;
 
     display: grid;
     grid-template-columns: min-content 1fr;
     grid-template-areas:
     "img title title"
     "img tekst tekst"
-    "img bottom button"
+    "img info button"
     ;
-    margin: 0.5rem;
+}
+
+/* de profile cards zijn in beeld */
+.first_card {
     margin-top: 10em;
+}
+
+.last_card {
+    margin-bottom: 10em;
 }
 
 /* programma card indelen */
 .profile_picture {
     border-radius: 50%;
-    width: 5em;
-    height: 5em;
+    width: 4em;
+    height: 4em;
+    margin: 1em;
 }
 .title {
     grid-area: title;
+    margin-top: 1em;
 }
 .tekst {
     grid-area: tekst;
     max-width: 11em;
+    margin-bottom: 1em;
 }
 .bottom {
-    grid-area: bottom;
+    grid-area: info;
 }
 .button {
     grid-area: button;
     align-self: flex-end;
+    margin: 1em;
 }
 
 
