@@ -15,6 +15,8 @@
 /* ---------- HEADER NAV HEADER ---------- */
 .header, .header_nav, .dates {
     position: fixed;
+    /* zorgt ervoor dat de tijd lijn achter de header verdwijnt */
+    z-index: 2;
 }
 
 .header {
@@ -106,31 +108,77 @@ ul {
 }
 
 /* ---------- TIME LIST + PROGRAMMA CARD ---------- */
+/* row zorgt ervoor dat de ol en articles naast elkaar staan */
 main {
-    display: grid;
-    grid-template-columns: min-content 1fr;
-    gap: 1em;
-    align-items: start;
+    display: flex;
+    flex-direction: row; /* Ensures the list and articles are side by side */
+    align-items: flex-start; /* Aligns items at the top */
 }
 
 .time_table {
-    grid-column: 1/2;
-    /* zodat de table meerdere rows in beslag neemt */
-    grid-row: 1/ span 3;
+    padding: 0;
+    margin: 0;
+
+    /* de list neemt 20% van de space, met flex: 1; neemen de articles de overige ruimte */
+    flex-basis: 20%;
+
+    /* de table in beeld zetten */
     margin-top: 9em;
+    margin-bottom: 9em;
+    margin-left: 1em;
+
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+}
+
+.time_table li {
+    position: relative;
+    /* zet de lijn tussen de uren */
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+/* after zet een lijn na elke li */
+.time_table li::after {
+    color: gray;
+
+    content: "- - - - - - - - - -";
+    /* maak de lijn verticaal en zet het in het midden */
+    transform: rotate(90deg);
+    transform-origin: center;
+    /* spatie tussen de uren en lijn */
+    margin-top: 3em;
+    margin-bottom: 3em;
+
+    /* alle streepjes onder elkaar */
+    white-space: nowrap;
+
+    /* zorgt ervoor dat de lijn achter de header verdwijnt */
+    z-index: 1;
+}
+
+/* de laatste li krijgt geen lijn */
+.time_table li:last-child::after {
+    content: '';
+}
+
+/* positie van de articles */
+.flex_container {
+    flex: 1;
 }
 
 .programma_card {
-    /* grid area */
-    grid-column: 2/3;
-
     /* border: 1px solid black; */
-    border-radius: 1em;
-    box-shadow: 0.1em 0.2em 0.2em  0.2em gray;
+    border-radius: 0.5em;
+    box-shadow: 0.05em 0.05em 0.3em  0.1em gray;
     /* gebruik de ruimte die nodig is, maar niet meer.(m.b.v min width op de tekst grid area) */
     /* max-width: fit-content; */
-    max-width: 17em;
+    max-width: 18em;
     margin-right: 1em;
+    margin-top: 1em;
 
     display: grid;
     grid-template-columns: min-content 1fr;
@@ -188,7 +236,7 @@ main {
 /* ---------- NOW PLAYING ---------- */
 .now_playing {
     background-color: #e6e3e3;
-    height: 5em;
+    height: 4em;
     position: fixed;
     /* now playing is vlak boven de footer */
     bottom: 4.6em;
@@ -201,31 +249,49 @@ main {
     align-items: center;
     justify-content: space-between;
 
+    /* zorgt ervoor dat de tijd lijn achter de now playing verdwijnt */
+    z-index: 2;
+
     /* box-sizing: border-box; */
 }
 
 .now_playing > img {
     align-items: flex-start;
     margin-left: 0.5em;
-    height: 4em;
-    width: 4em;
+    height: 3em;
+    width: 3em;
     /* max-width: 5em; */
     border-radius: 10%;
+}
+
+.now_playing h2 {
+    font-size: 1.2rem;
+}
+
+.now_playing p {
+    margin-top: 5px;
+    margin-left: 10px;
+    font-size: 0.8rem;
 }
 
 .now_playing > button {
     width: 3em;
     margin-left: auto;
-    margin-right: 0.5em;
+    margin-right: 1em;
 
     /* circle */
-    height: 3em;
-    width: 3em;
+    height: 2em;
+    width: 2em;
     border-radius: 50%;
     border: none;
     
     background-color: #fe0170;
     color: white;
+    
+    /* gebruik flex om text in de button in het midden te krijgen */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -243,6 +309,9 @@ main {
     bottom: 0;
     width: 100%;
     height: 4.5em;
+
+    /* zorgt ervoor dat de lijn achter de header verdwijnt */
+    z-index: 2;
 }
 
 .footer_nav ul {
