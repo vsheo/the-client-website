@@ -50,6 +50,14 @@ a {
             padding-right: 1em;
         }
 
+        .desktop_nav {
+            /* alleen op desktop */
+            @media only screen and (max-width: 1000px) {
+                display: none;
+            }
+
+        }
+
     }
 
     .header_nav {
@@ -132,7 +140,7 @@ a {
 
         .dates {
             top: 3.5em;
-            left: 20.5em;
+            left: 22.5em;
             overflow-x: hidden;
 
             li {
@@ -290,6 +298,37 @@ main {
 
 
 /* ---------- NOW PLAYING ---------- */
+.desktop_buttons {
+    background-color: #d234e0;
+
+    position: fixed;
+    top: 4.5em;
+    z-index: 3;
+
+    width: 20em;
+    padding: 1em;
+
+    display: flex;
+    justify-content: start;
+    gap: 2em;
+
+    button {
+        border: none;
+        font: inherit;
+        background: none;
+    }
+
+    button:last-child {
+        margin-left: auto;
+    }
+
+    /* tot 1000px is dit niet te zien */
+    @media only screen and (max-width: 1000px) {
+        display: none;
+    }
+
+}
+
 .now_playing {
     background-color: #e6e3e3;
     height: 4em;
@@ -330,6 +369,12 @@ main {
             margin-left: 10px;
             font-size: 0.8rem;
         }
+    }
+
+    .desktop_icons {
+    @media only screen and (max-width: 1000px) {
+        display: none;
+    }
     }
 
     button {
