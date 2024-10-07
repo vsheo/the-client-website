@@ -111,8 +111,8 @@ ul {
 /* row zorgt ervoor dat de ol en articles naast elkaar staan */
 main {
     display: flex;
-    flex-direction: row; /* Ensures the list and articles are side by side */
-    align-items: flex-start; /* Aligns items at the top */
+    flex-direction: row;
+    align-items: flex-start;
 }
 
 .time_table {
@@ -130,6 +130,13 @@ main {
     display: flex;
     flex-direction: column;
     font-size: 14px;
+
+    /* laptop versie */
+    @media only screen and (min-width: 1000px) {
+        /* positie */
+        position: relative;
+        left: 17em;
+    }
 }
 
 .time_table li {
@@ -187,6 +194,13 @@ main {
     "img tekst tekst"
     "img info button"
     ;
+
+    /* laptop versie */
+    @media only screen and (min-width: 1000px) {
+        /* positie */
+        position: relative;
+        left: 12em;
+    }
 }
 
 /* de profile cards zijn in beeld */
@@ -252,7 +266,19 @@ main {
     /* zorgt ervoor dat de tijd lijn achter de now playing verdwijnt */
     z-index: 2;
 
-    /* box-sizing: border-box; */
+    /* laptop versie */
+    @media only screen and (min-width: 1000px) {
+        /* positie */
+        top: 7.15em;
+        left: 0;
+        max-width: 20em;
+        height: 100%;
+        border-radius: 0;
+
+        flex-direction: column;
+        /* align-items: center; */
+        justify-content:flex-start
+    }
 }
 
 .now_playing > img {
@@ -262,16 +288,52 @@ main {
     width: 3em;
     /* max-width: 5em; */
     border-radius: 10%;
+
+    /* laptop versie */
+    @media only screen and (min-width: 1000px) {
+        margin: 0;
+        position: relative;
+        top: 1em;
+        height: 10em;
+        width: 10em;
+        border-radius: 5px;
+    }
+}
+
+.song_info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1em;
+
+    /* laptop versie */
+    @media only screen and (min-width: 1000px) {
+        flex-direction: column-reverse;
+        position: relative;
+        top: 1.5em;
+        justify-content: start;
+    }
 }
 
 .now_playing h2 {
     font-size: 1.2rem;
+
+    /* laptop versie */
+    @media only screen and (min-width: 1000px) {
+        /* margin-top: 1em; */
+        font-size: 2rem;
+    }
 }
 
 .now_playing p {
     margin-top: 5px;
     margin-left: 10px;
     font-size: 0.8rem;
+
+    /* laptop versie */
+    @media only screen and (min-width: 1000px) {
+        margin: 0;
+        align-self: center;
+    }
 }
 
 .now_playing > button {
@@ -292,13 +354,17 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-}
 
+    /* laptop versie */
+    @media only screen and (min-width: 1000px) {
+        margin: 0;
+        position: relative;
+        top: 4em;
+        align-self: center;
 
-.song_info {
-    display: flex;
-    flex-direction: column;
-    margin-left: 1em;
+        height: 4.5em;
+        width: 4.5em;
+    }
 }
 
 
