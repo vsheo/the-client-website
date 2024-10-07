@@ -6,6 +6,7 @@
     margin: 0;
 
     list-style-type: none;
+    list-style: none;
 
     font-family: sans-serif;
 
@@ -19,108 +20,128 @@ a {
 
 /* Mobile version */
 /* ---------- HEADER ---------- */
-.header, .header_nav, .dates {
-    position: fixed;
+.header {
     /* zorgt ervoor dat de tijd lijn achter de header verdwijnt */
     z-index: 2;
-}
 
-.header {
     background-color: #0091ff;
     display: flex;
-    align-items: center;
-    /* dit haalt de 2 links uit elkaar */
-    justify-content: space-between;
-
-    height: 3em;
-    width: 100%;
-
-    /* de eerste link, in de header class, wordt in het midden geplaatst */
-    h1 {
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    /* de 2de helemaal rechts */
-    a {
-        margin-left: auto;
-        padding-right: 1em;
-    }
-}
-
-.header_nav {
-    background-color: #df3535;
-    position: sticky;
-    display: flex;
     flex-direction: column;
-    justify-content: center;
-    
-    /* de nav begint waar de header Eindigt */
-    top: 3em;
+    position: fixed;
     height: 3em;
-
-    ul {
-        width: 100%;
-        list-style: none;
-    }
-
-    /* dit zet de li in de nav naast elkaar en in het midden */
-    li {
-        display: inline;
-        padding: 0.5em;
-        margin-left: 2%;
-    }
-
-    /* laptop versie */
-    @media only screen and (min-width: 1000px) {
-        /* positie */
-        position: relative;
-        left: 20em;
-    }
-}
-
-.dates {
-    background-color:#85d759;
-    display: flex;
-    height: min-content;
     width: 100%;
-    /* dates begint waar de nav eindigt */
-    top: 5em;
-    padding: 0;
 
-    /* links en rechts scrollen toelaten */
-    overflow-y: hidden;
-    overflow-x: auto;
+    .top_header {
+        display: flex;
+        align-items: center;
+        /* dit haalt de 2 links uit elkaar */
+        justify-content: space-between;
 
-    li {
-        display: inline;
-        margin-left: 1%;
-        /* spatie tussen de dagen */
-        padding: 0.5em;
-    
-        text-align: center;
-        /* justify-self: flex-start; */
+        /* de eerste link, in de header class, wordt in het midden geplaatst */
+        li:first-child {
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* de 2de helemaal rechts */
+        li:last-child {
+            margin-left: auto;
+            padding-right: 1em;
+        }
+
+    }
+
+    .header_nav {
+        background-color: #df3535;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        /* de header_nav begint waar de header Eindigt */
+        top: 0.6em;
+        padding: 1em;
+        
+        ul {
+            width: 100%;
+            list-style: none;
+        }
+
+        /* dit zet de li in de nav naast elkaar en in het midden */
+        li {
+            display: inline;
+            margin-left: 2%;
+        }
+    }
+
+    .dates {
+        background-color:#85d759;
+
+        position: relative;
+        top: 0.6em;
+        padding: 2em;
+        margin: 0;
+
+        display: flex;
+        align-items: center;
+        gap: 2em;
+
+        /* Horizontal scrolling */
+        overflow-x: auto;
+        overflow-y: hidden;
+
+       li {
+            padding: 0;
+            margin: 0;
+            text-align: center;
+
+            min-width: 2em;
+            min-height: 3em;
+            
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        li::nth-of-child(3) {
+            background-color: #fff;
+        }
     }
 
     /* laptop versie */
     @media only screen and (min-width: 1000px) {
-        /* positie */
-        top: 6em;
-        left: 20.5em;
-        overflow-x: hidden;
+        height: 4.5em;
 
-        li {
-            max-width: 2em;
-            align-self: center;
+        .top_header {
+            li:first-child {
+                top: 1em;
+                left: 10vw;
+            }
+
+            li:last-child {
+                position: relative;
+                top: 1em;
+            }
+        }
+
+        .header_nav {
+            top: 2.2em;
+            left: 20em;
+        }
+
+        .dates {
+            top: 3.5em;
+            left: 20.5em;
+            overflow-x: hidden;
+
+            li {
+                max-width: 2em;
+                align-self: center;
+            }
         }
     }
 }
-
-/* .dates > li:nth-of-child(5) {
-    display: block;
-    color: #fe0170;
-} */
 
 /* ---------- TIME LIST + PROGRAMMA CARD ---------- */
 /* row zorgt ervoor dat de ol en articles naast elkaar staan */
@@ -138,9 +159,8 @@ main {
     flex-basis: 20%;
 
     /* de table in beeld zetten */
-    margin-top: 9em;
-    margin-bottom: 9em;
-    margin-left: 1em;
+    margin-top: 13em;
+    margin-bottom: 7em;
 
     display: flex;
     flex-direction: column;
@@ -183,8 +203,8 @@ main {
     @media only screen and (min-width: 1000px) {
         /* positie */
         position: relative;
-        top: 1em;
-        left: 17em;
+        top: 4em;
+        left: 19em;
     }
 }
 
@@ -196,8 +216,7 @@ main {
         /* border: 1px solid black; */
         border-radius: 0.5em;
         box-shadow: 0.05em 0.05em 0.3em  0.1em gray;
-        /* gebruik de ruimte die nodig is, maar niet meer.(m.b.v min width op de tekst grid area) */
-        /* max-width: fit-content; */
+
         max-width: 18em;
         margin-right: 1em;
         margin-top: 1em;
@@ -212,7 +231,7 @@ main {
 
         /* de profile cards zijn in beeld */
         &:first-child {
-            margin-top: 10.5em;
+            margin-top: 13em;
         }
         
         &:last-child {
@@ -261,7 +280,10 @@ main {
         @media only screen and (min-width: 1000px) {
             /* positie */
             position: relative;
-            left: 12em;
+            top: 3em;
+            left: 13em;
+            max-width: 25em;
+            width: auto;
         }
     }
 }
@@ -333,7 +355,7 @@ main {
     /* laptop versie */
     @media only screen and (min-width: 1000px) {
         /* positie */
-        top: 3em;
+        top: 4.5em;
         left: 0;
         max-width: 20em;
         height: 100%;
@@ -346,7 +368,7 @@ main {
         img {
             margin: 0;
             position: relative;
-            top: 3em;
+            top: 4em;
             height: 10em;
             width: 10em;
             border-radius: 5px;
@@ -355,7 +377,7 @@ main {
         .song_info {
             flex-direction: column-reverse;
             position: relative;
-            top: 4em;
+            top: 5em;
             justify-content: start;
 
             h2 {
@@ -371,7 +393,7 @@ main {
         button {
             margin: 0;
             position: relative;
-            top: 7em;
+            top: 8em;
             align-self: center;
 
             height: 4.5em;
@@ -410,5 +432,10 @@ main {
     img {
         width: 2.5em;
         height: 2.5em;
+    }
+
+    /* laptop versie */
+    @media only screen and (min-width: 1000px) {
+        display: none;
     }
 }
