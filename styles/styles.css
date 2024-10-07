@@ -6,13 +6,19 @@
     margin: 0;
 
     list-style-type: none;
+
+    font-family: sans-serif;
+
+    object-fit: cover;
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }
 
 /* Mobile version */
-
-/* hover over links laat zien dat erop geclicked kan worden */
-
-/* ---------- HEADER NAV HEADER ---------- */
+/* ---------- HEADER ---------- */
 .header, .header_nav, .dates {
     position: fixed;
     /* zorgt ervoor dat de tijd lijn achter de header verdwijnt */
@@ -28,30 +34,23 @@
 
     height: 3em;
     width: 100%;
-    
-}
 
-a {
-    text-decoration: none;
-    color: black;
-}
+    /* de eerste link, in de header class, wordt in het midden geplaatst */
+    h1 {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 
-/* de eerste link, in de header class, wordt in het midden geplaatst */
-.header a:first-child {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+    /* de 2de helemaal rechts */
+    a {
+        margin-left: auto;
+        padding-right: 1em;
+    }
 }
-
-/* de 2de helemaal rechts */
-.header a:last-child {
-    margin-left: auto;
-    padding-right: 1em;
-}
-
 
 .header_nav {
-    background-color: #fff;
+    background-color: #df3535;
     position: sticky;
     display: flex;
     flex-direction: column;
@@ -59,53 +58,69 @@ a {
     
     /* de nav begint waar de header Eindigt */
     top: 3em;
-    height: 2em;
+    height: 3em;
 
-}
+    ul {
+        width: 100%;
+        list-style: none;
+    }
 
-ul {
-    width: 100%;
-    list-style: none;
-}
+    /* dit zet de li in de nav naast elkaar en in het midden */
+    li {
+        display: inline;
+        padding: 0.5em;
+        margin-left: 2%;
+    }
 
-/* dit zet de li in de nav naast elkaar en in het midden */
-.header_nav li {
-    display: inline;
-    padding: 0.5em;
-    margin-left: 2%;
+    /* laptop versie */
+    @media only screen and (min-width: 1000px) {
+        /* positie */
+        position: relative;
+        left: 20em;
+    }
 }
 
 .dates {
-    background-color:#fff;
+    background-color:#85d759;
     display: flex;
     height: min-content;
     width: 100%;
     /* dates begint waar de nav eindigt */
     top: 5em;
-
-    /* eerste dat start helemaal links */
     padding: 0;
 
     /* links en rechts scrollen toelaten */
     overflow-y: hidden;
     overflow-x: auto;
+
+    li {
+        display: inline;
+        margin-left: 1%;
+        /* spatie tussen de dagen */
+        padding: 0.5em;
+    
+        text-align: center;
+        /* justify-self: flex-start; */
+    }
+
+    /* laptop versie */
+    @media only screen and (min-width: 1000px) {
+        /* positie */
+        top: 6em;
+        left: 20.5em;
+        overflow-x: hidden;
+
+        li {
+            max-width: 2em;
+            align-self: center;
+        }
+    }
 }
 
-.dates > li:nth-of-child(5) {
+/* .dates > li:nth-of-child(5) {
     display: block;
     color: #fe0170;
-}
-
-/* select de li binnen de dates class */
-.dates > li {
-    display: inline;
-    margin-left: 1%;
-    /* spatie tussen de dagen */
-    padding: 0.5em;
-
-    text-align: center;
-    /* justify-self: flex-start; */
-}
+} */
 
 /* ---------- TIME LIST + PROGRAMMA CARD ---------- */
 /* row zorgt ervoor dat de ol en articles naast elkaar staan */
@@ -131,119 +146,124 @@ main {
     flex-direction: column;
     font-size: 14px;
 
+    li {
+        position: relative;
+        /* zet de lijn tussen de uren */
+        display: flex;
+        flex-direction: column;
+    
+        align-items: center;
+    }
+
+    /* after zet een lijn na elke li */
+    li::after {
+        color: gray;
+    
+        content: "- - - - - - - - - -";
+        /* maak de lijn verticaal en zet het in het midden */
+        transform: rotate(90deg);
+        transform-origin: center;
+        /* spatie tussen de uren en lijn */
+        margin-top: 3em;
+        margin-bottom: 3em;
+    
+        /* alle streepjes onder elkaar */
+        white-space: nowrap;
+    
+        /* zorgt ervoor dat de lijn achter de header verdwijnt */
+        z-index: 1;
+    }
+
+    /* de laatste li krijgt geen lijn */
+    li:last-child::after {
+        content: '';
+    }
+
     /* laptop versie */
     @media only screen and (min-width: 1000px) {
         /* positie */
         position: relative;
+        top: 1em;
         left: 17em;
     }
-}
-
-.time_table li {
-    position: relative;
-    /* zet de lijn tussen de uren */
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
-}
-
-/* after zet een lijn na elke li */
-.time_table li::after {
-    color: gray;
-
-    content: "- - - - - - - - - -";
-    /* maak de lijn verticaal en zet het in het midden */
-    transform: rotate(90deg);
-    transform-origin: center;
-    /* spatie tussen de uren en lijn */
-    margin-top: 3em;
-    margin-bottom: 3em;
-
-    /* alle streepjes onder elkaar */
-    white-space: nowrap;
-
-    /* zorgt ervoor dat de lijn achter de header verdwijnt */
-    z-index: 1;
-}
-
-/* de laatste li krijgt geen lijn */
-.time_table li:last-child::after {
-    content: '';
 }
 
 /* positie van de articles */
 .flex_container {
     flex: 1;
-}
 
-.programma_card {
-    /* border: 1px solid black; */
-    border-radius: 0.5em;
-    box-shadow: 0.05em 0.05em 0.3em  0.1em gray;
-    /* gebruik de ruimte die nodig is, maar niet meer.(m.b.v min width op de tekst grid area) */
-    /* max-width: fit-content; */
-    max-width: 18em;
-    margin-right: 1em;
-    margin-top: 1em;
+    .programma_card {
+        /* border: 1px solid black; */
+        border-radius: 0.5em;
+        box-shadow: 0.05em 0.05em 0.3em  0.1em gray;
+        /* gebruik de ruimte die nodig is, maar niet meer.(m.b.v min width op de tekst grid area) */
+        /* max-width: fit-content; */
+        max-width: 18em;
+        margin-right: 1em;
+        margin-top: 1em;
 
-    display: grid;
-    grid-template-columns: min-content 1fr;
-    grid-template-areas:
-    "img title title"
-    "img tekst tekst"
-    "img info button"
-    ;
+        display: grid;
+        grid-template-columns: min-content 1fr;
+        grid-template-areas:
+        "img title title"
+        "img tekst tekst"
+        "img info button"
+        ;
 
-    /* laptop versie */
-    @media only screen and (min-width: 1000px) {
-        /* positie */
-        position: relative;
-        left: 12em;
+        /* de profile cards zijn in beeld */
+        &:first-child {
+            margin-top: 10.5em;
+        }
+        
+        &:last-child {
+            margin-bottom: 10em;
+        }
+
+        /* programma card indelen */
+        .title {
+            grid-area: title;
+            margin-top: 1em;
+        }
+
+        .profile_picture {
+            grid-area: img;
+            border-radius: 50%;
+            width: 4em;
+            height: 4em;
+            margin: 1em;
+        }
+
+        .tekst {
+            grid-area: tekst;
+            max-width: 11em;
+            margin-bottom: 1em;
+            margin-right: 0.5em;
+        }
+        .bottom {
+            grid-area: info;
+        }
+
+        .button {
+            grid-area: button;
+            align-self: flex-end;
+            margin: 1em;
+
+            background-color: #fe0170;
+            height: 1.5em;
+            width: 1.5em;
+            border-radius: 50%;
+            /* center the arrow */
+            text-align: center;
+            padding: 4px;
+        }
+
+        /* laptop versie */
+        @media only screen and (min-width: 1000px) {
+            /* positie */
+            position: relative;
+            left: 12em;
+        }
     }
-}
-
-/* de profile cards zijn in beeld */
-.first_card {
-    margin-top: 9.5em;
-}
-
-.last_card {
-    margin-bottom: 10em;
-}
-
-/* programma card indelen */
-.profile_picture {
-    border-radius: 50%;
-    width: 4em;
-    height: 4em;
-    margin: 1em;
-}
-.title {
-    grid-area: title;
-    margin-top: 1em;
-}
-.tekst {
-    grid-area: tekst;
-    max-width: 11em;
-    margin-bottom: 1em;
-    margin-right: 0.5em;
-}
-.bottom {
-    grid-area: info;
-}
-.button {
-    grid-area: button;
-    align-self: flex-end;
-    margin: 1em;
-
-    background-color: #fe0170;
-    height: 1.5em;
-    width: 1.5em;
-    border-radius: 50%;
-    /* center the arrow */
-    text-align: center;
-    padding: 4px;
 }
 
 
@@ -266,10 +286,54 @@ main {
     /* zorgt ervoor dat de tijd lijn achter de now playing verdwijnt */
     z-index: 2;
 
+    img {
+        align-items: flex-start;
+        margin-left: 0.5em;
+        height: 3em;
+        width: 3em;
+        border-radius: 10%;
+    }
+
+    .song_info {
+        display: flex;
+        flex-direction: column;
+        margin-left: 1em;
+    
+        h2 {
+            font-size: 1.2rem;
+        }
+    
+        p {
+            margin-top: 5px;
+            margin-left: 10px;
+            font-size: 0.8rem;
+        }
+    }
+
+    button {
+        width: 3em;
+        margin-left: auto;
+        margin-right: 1em;
+    
+        /* circle */
+        height: 2em;
+        width: 2em;
+        border-radius: 50%;
+        border: none;
+        
+        background-color: #fe0170;
+        color: white;
+        
+        /* gebruik flex om text in de button in het midden te krijgen */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     /* laptop versie */
     @media only screen and (min-width: 1000px) {
         /* positie */
-        top: 7.15em;
+        top: 3em;
         left: 0;
         max-width: 20em;
         height: 100%;
@@ -277,96 +341,44 @@ main {
 
         flex-direction: column;
         /* align-items: center; */
-        justify-content:flex-start
+        justify-content: flex-start;
+
+        img {
+            margin: 0;
+            position: relative;
+            top: 3em;
+            height: 10em;
+            width: 10em;
+            border-radius: 5px;
+        }
+
+        .song_info {
+            flex-direction: column-reverse;
+            position: relative;
+            top: 4em;
+            justify-content: start;
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            p {
+                margin: 0;
+                align-self: center;
+            }
+        }
+
+        button {
+            margin: 0;
+            position: relative;
+            top: 7em;
+            align-self: center;
+
+            height: 4.5em;
+            width: 4.5em;
+        }
     }
 }
-
-.now_playing > img {
-    align-items: flex-start;
-    margin-left: 0.5em;
-    height: 3em;
-    width: 3em;
-    /* max-width: 5em; */
-    border-radius: 10%;
-
-    /* laptop versie */
-    @media only screen and (min-width: 1000px) {
-        margin: 0;
-        position: relative;
-        top: 1em;
-        height: 10em;
-        width: 10em;
-        border-radius: 5px;
-    }
-}
-
-.song_info {
-    display: flex;
-    flex-direction: column;
-    margin-left: 1em;
-
-    /* laptop versie */
-    @media only screen and (min-width: 1000px) {
-        flex-direction: column-reverse;
-        position: relative;
-        top: 1.5em;
-        justify-content: start;
-    }
-}
-
-.now_playing h2 {
-    font-size: 1.2rem;
-
-    /* laptop versie */
-    @media only screen and (min-width: 1000px) {
-        /* margin-top: 1em; */
-        font-size: 2rem;
-    }
-}
-
-.now_playing p {
-    margin-top: 5px;
-    margin-left: 10px;
-    font-size: 0.8rem;
-
-    /* laptop versie */
-    @media only screen and (min-width: 1000px) {
-        margin: 0;
-        align-self: center;
-    }
-}
-
-.now_playing > button {
-    width: 3em;
-    margin-left: auto;
-    margin-right: 1em;
-
-    /* circle */
-    height: 2em;
-    width: 2em;
-    border-radius: 50%;
-    border: none;
-    
-    background-color: #fe0170;
-    color: white;
-    
-    /* gebruik flex om text in de button in het midden te krijgen */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    /* laptop versie */
-    @media only screen and (min-width: 1000px) {
-        margin: 0;
-        position: relative;
-        top: 4em;
-        align-self: center;
-
-        height: 4.5em;
-        width: 4.5em;
-    }
-}
-
 
 /* ---------- FOOTER ---------- */
 .footer_nav {
@@ -378,25 +390,25 @@ main {
 
     /* zorgt ervoor dat de lijn achter de header verdwijnt */
     z-index: 2;
-}
 
-.footer_nav ul {
-    display: flex;
-    align-items: center;
-    /* justify-content: space-around; */
-    padding-left: 0;
-}
+    ul {
+        display: flex;
+        align-items: center;
+        /* justify-content: space-around; */
+        padding-left: 0;
+    }
 
-.footer_nav li {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    flex: 1;
-    margin-top: 0.5em;
-}
+    li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        flex: 1;
+        margin-top: 0.5em;
+    }
 
-.footer_nav img {
-    width: 2.5em;
-    height: 2.5em;
+    img {
+        width: 2.5em;
+        height: 2.5em;
+    }
 }
