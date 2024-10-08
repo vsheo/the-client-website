@@ -38,26 +38,24 @@ a {
         justify-content: space-between;
 
         /* de eerste link, in de header class, wordt in het midden geplaatst */
-        li:first-child {
+        li:nth-of-type(2) {
             position: relative;
             left: 50%;
             transform: translateX(-50%);
         }
 
         /* de 2de helemaal rechts */
-        li:last-child {
+        li:nth-of-type(6) {
             margin-left: auto;
             padding-right: 1em;
         }
 
-        .desktop_nav {
-            /* alleen op desktop */
-            @media only screen and (max-width: 1000px) {
+        /* alleen op desktop */
+        @media only screen and (max-width: 1000px) {
+            .desktop_nav {
                 display: none;
             }
-
         }
-
     }
 
     .header_nav {
@@ -117,31 +115,42 @@ a {
         }
     }
 
-    /* laptop versie */
+    /* desktop versie */
     @media only screen and (min-width: 1000px) {
         height: 4.5em;
 
         .top_header {
-            li:first-child {
-                top: 1em;
-                left: 10vw;
+            line-height: 4.5em;
+            padding-left: 0;
+            padding-right: 4em;
+
+            /* n+1 telkens 1 omhoog. -n+5 stopt op de 5de li */
+            li:nth-of-type(n+1):nth-of-type(-n+5) {
+                /* haalt alle styling weg */
+                all: unset;
+                font-size: large;
+                margin-left: 1em;
             }
 
-            li:last-child {
-                position: relative;
-                top: 1em;
-            }
+            /* begint op de 6de li en gaat tot het eind van de list */
+            /* li:nth-of-type(n+6) {
+                padding-right: 5em;
+            } */
         }
 
         .header_nav {
-            top: 2.2em;
+            top: 0;
             left: 20em;
         }
 
         .dates {
-            top: 3.5em;
-            left: 22.5em;
+            top: 0;
+            left: 20em;
             overflow-x: hidden;
+
+            li:first-child {
+                margin-left: 2.5em;
+            }
 
             li {
                 max-width: 2em;
@@ -314,7 +323,6 @@ main {
 
     button {
         border: none;
-        font: inherit;
         background: none;
     }
 
@@ -322,7 +330,7 @@ main {
         margin-left: auto;
     }
 
-    /* tot 1000px is dit niet te zien */
+    /* desktop only */
     @media only screen and (max-width: 1000px) {
         display: none;
     }
@@ -342,7 +350,7 @@ main {
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 
     /* zorgt ervoor dat de tijd lijn achter de now playing verdwijnt */
     z-index: 2;
@@ -371,33 +379,48 @@ main {
         }
     }
 
-    .desktop_icons {
-    @media only screen and (max-width: 1000px) {
-        display: none;
-    }
-    }
-
-    button {
-        width: 3em;
-        margin-left: auto;
-        margin-right: 1em;
-    
-        /* circle */
-        height: 2em;
-        width: 2em;
-        border-radius: 50%;
-        border: none;
-        
-        background-color: #fe0170;
-        color: white;
-        
-        /* gebruik flex om text in de button in het midden te krijgen */
+    .icon_container {
         display: flex;
-        align-items: center;
-        justify-content: center;
+        gap: 0.5em;
+        margin-right: 1em;
+
+        button {
+            width: 3em;
+            margin-left: auto;
+            margin-right: 1em;
+        
+            /* circle */
+            height: 2em;
+            width: 2em;
+            border-radius: 50%;
+            border: none;
+            
+            background-color: #fe0170;
+            color: white;
+            
+            /* gebruik flex om text in de button in het midden te krijgen */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .desktop_icons {
+            /* desktop only */
+            @media only screen and (max-width: 1000px) {
+                display: none;
+            }
+        }
     }
 
-    /* laptop versie */
+    /* now playing 1 width tussen 700 en 1000 pixels */
+    @media (min-width: 700px) and (max-width: 1000px) {
+        height: 6em;
+        max-width: 60vw;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* desktop versie */
     @media only screen and (min-width: 1000px) {
         /* positie */
         top: 4.5em;
@@ -435,14 +458,20 @@ main {
             }
         }
 
-        button {
-            margin: 0;
-            position: relative;
-            top: 8em;
-            align-self: center;
+        .icon_container {
+            .desktop_icons {
+                background-color: #ff8c00;
+            }
 
-            height: 4.5em;
-            width: 4.5em;
+            button {
+                margin: 0;
+                position: relative;
+                top: 8em;
+                align-self: center;
+
+                height: 4.5em;
+                width: 4.5em;
+            }
         }
     }
 }
