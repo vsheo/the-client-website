@@ -26,9 +26,9 @@ op de website zijn er buttons, deze hebben nog geen linkjes/functies.
 ![My Image](./assets/laptop_version.png)
 <!-- Voeg een mooie poster visual toe 📸 -->
 <!-- Voeg een link toe naar Github Pages 🌐-->
+Link en QR code naar de website
 https://github.com/vsheo/the-client-website
 
-QR code naar de website
 ![My Image](./assets/website_qr.png)
 
 
