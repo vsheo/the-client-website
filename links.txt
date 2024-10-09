@@ -1,3 +1,11 @@
 MediaHuis github pagina
 https://github.com/fdnd-agency/triple
 
+
+
+demonstratie
+Ik ben begonnen met mobile first, en daarna de website versie.
+Tijdens deze sprint heb ik de website precies na proberen te bouwen.
+Ik dacht dat om dat eerst af te krijgen en daarna aanpassingen maken.
+Ergens tijdens de sprint heb ik getunnelvisioned om de website precies na te bouwen.
+Ik heb voor de eerste sprint review geen eigen aanpassingen kunnen maken.

@@ -31,23 +31,31 @@ a {
     height: 3em;
     width: 100%;
 
+    border-bottom: 2px solid rgb(0, 0, 0);
+
     .top_header {
         display: flex;
         align-items: center;
         /* dit haalt de 2 links uit elkaar */
         justify-content: space-between;
 
-        /* de eerste link, in de header class, wordt in het midden geplaatst */
+
+        /* de eerste mobile link, in de header class, wordt in het midden geplaatst */
         li:nth-of-type(2) {
             position: relative;
             left: 50%;
             transform: translateX(-50%);
         }
 
-        /* de 2de helemaal rechts */
+        /* de 2de mobile link helemaal rechts */
         li:nth-of-type(6) {
             margin-left: auto;
             padding-right: 1em;
+        }
+
+        a {
+            color: white;
+            font-weight: bold;
         }
 
         /* alleen op desktop */
@@ -59,11 +67,14 @@ a {
     }
 
     .header_nav {
-        background-color: #df3535;
+        background-color: #fafafa;
         position: relative;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        font-weight: bold;
+
+        border-bottom: 1px solid rgb(0, 0, 0);
         
         /* de header_nav begint waar de header Eindigt */
         top: 0.6em;
@@ -74,6 +85,12 @@ a {
             list-style: none;
         }
 
+        li:first-child {
+            a {
+                color: #fe0170;
+            }
+        }
+
         /* dit zet de li in de nav naast elkaar en in het midden */
         li {
             display: inline;
@@ -82,7 +99,7 @@ a {
     }
 
     .dates {
-        background-color:#85d759;
+        background-color: #fafafa;
 
         position: relative;
         top: 0.6em;
@@ -92,6 +109,8 @@ a {
         display: flex;
         align-items: center;
         gap: 2em;
+
+        box-shadow: 0 5px 50px rgb(255, 255, 255);
 
         /* Horizontal scrolling */
         overflow-x: auto;
@@ -109,20 +128,21 @@ a {
             align-items: center;
             justify-content: center;
         }
-
-        li::nth-of-child(3) {
-            background-color: #fff;
-        }
     }
 
     /* desktop versie */
     @media only screen and (min-width: 1000px) {
         height: 4.5em;
+        border-bottom: none;
+
 
         .top_header {
             line-height: 4.5em;
             padding-left: 0;
             padding-right: 4em;
+
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            z-index: 3;
 
             /* n+1 telkens 1 omhoog. -n+5 stopt op de 5de li */
             li:nth-of-type(n+1):nth-of-type(-n+5) {
@@ -132,15 +152,32 @@ a {
                 margin-left: 1em;
             }
 
-            /* begint op de 6de li en gaat tot het eind van de list */
-            /* li:nth-of-type(n+6) {
-                padding-right: 5em;
-            } */
+            li:nth-of-type(7) {
+                background-color: #fe0170;
+                height: 2.5em;
+                width: 7em;
+                border-radius: 5px;
+    
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+    
+            li:nth-of-type(7):hover {
+                background-color: white;
+    
+                a {
+                    color: #fe0170;
+                }
+            }
         }
 
         .header_nav {
             top: 0;
             left: 20em;
+
+            /* border shadow onder */
+            box-shadow: 0.5 0.5em 0.5 0.5em rgba(0, 0, 0, 0.1);
         }
 
         .dates {
@@ -308,7 +345,7 @@ main {
 
 /* ---------- NOW PLAYING ---------- */
 .desktop_buttons {
-    background-color: #d234e0;
+    background-color: #fafafa;
 
     position: fixed;
     top: 4.5em;
@@ -321,13 +358,26 @@ main {
     justify-content: start;
     gap: 2em;
 
+    /* border shadow onder */
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.1);
+
     button {
         border: none;
         background: none;
+        font-weight: bold;
+    }
+
+    button:first-child {
+        color: #fe0170;
     }
 
     button:last-child {
         margin-left: auto;
+
+        img {
+            height: 1.5em;
+            width: 1.5em;
+        }
     }
 
     /* desktop only */
@@ -338,7 +388,7 @@ main {
 }
 
 .now_playing {
-    background-color: #e6e3e3;
+    background-color: #fff;
     height: 4em;
     position: fixed;
     /* now playing is vlak boven de footer */
@@ -354,6 +404,9 @@ main {
 
     /* zorgt ervoor dat de tijd lijn achter de now playing verdwijnt */
     z-index: 2;
+
+    /* border shadow links */
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.1);
 
     img {
         align-items: flex-start;
@@ -380,28 +433,26 @@ main {
     }
 
     .icon_container {
-        display: flex;
         gap: 0.5em;
-        margin-right: 1em;
 
-        button {
-            width: 3em;
-            margin-left: auto;
-            margin-right: 1em;
-        
-            /* circle */
-            height: 2em;
-            width: 2em;
-            border-radius: 50%;
-            border: none;
+        li:nth-of-type(2){
+            .play_button {
+                margin-left: auto;
             
-            background-color: #fe0170;
-            color: white;
-            
-            /* gebruik flex om text in de button in het midden te krijgen */
-            display: flex;
-            align-items: center;
-            justify-content: center;
+                /* circle */
+                height: 3em;
+                width: 3em;
+                border-radius: 50%;
+                border: none;
+                
+                background-color: #fe0170;
+                color: white;
+                
+                /* gebruik flex om text in de button in het midden te krijgen */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
         }
 
         .desktop_icons {
@@ -436,7 +487,7 @@ main {
         img {
             margin: 0;
             position: relative;
-            top: 4em;
+            top: 4.5em;
             height: 10em;
             width: 10em;
             border-radius: 5px;
@@ -445,8 +496,8 @@ main {
         .song_info {
             flex-direction: column-reverse;
             position: relative;
-            top: 5em;
-            justify-content: start;
+            top: 5.5em;
+            margin: 0;
 
             h2 {
                 font-size: 2rem;
@@ -459,16 +510,45 @@ main {
         }
 
         .icon_container {
+            margin: 0;
+            padding-left: 0;
+            position: relative;
+            top: 8em;
+            
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
             .desktop_icons {
-                background-color: #ff8c00;
+                background-color: inherit;
+                border: none;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+
+                height: 4em;
+                width: 4em;
+                padding: 3em;
+
+                img {
+                    height: 2em;
+                    width: 2em;
+                }
+
+                span {
+                    margin-top: 5em;
+                    margin-bottom: 3em;
+
+                    white-space: nowrap;
+                }
             }
 
-            button {
-                margin: 0;
-                position: relative;
-                top: 8em;
-                align-self: center;
-
+            .play_button {
                 height: 4.5em;
                 width: 4.5em;
             }
@@ -478,11 +558,13 @@ main {
 
 /* ---------- FOOTER ---------- */
 .footer_nav {
-    background-color: #f6f2f2;
+    background-color: #fff;
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 4.5em;
+    height: 4em;
+
+    box-shadow: 0 -4px 6px -2px rgba(0, 0, 0, 0.3);
 
     /* zorgt ervoor dat de lijn achter de header verdwijnt */
     z-index: 2;
@@ -492,20 +574,26 @@ main {
         align-items: center;
         /* justify-content: space-around; */
         padding-left: 0;
-    }
+        
+        li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 1;
+            margin-top: 0.5em;
+        }
 
-    li {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        flex: 1;
-        margin-top: 0.5em;
-    }
-
-    img {
-        width: 2.5em;
-        height: 2.5em;
+        li:last-child {
+            img {
+                width: 2.6em;
+            }
+        }
+    
+        img {
+            width: 1.5em;
+            height: 1.5em;
+        }
     }
 
     /* laptop versie */
