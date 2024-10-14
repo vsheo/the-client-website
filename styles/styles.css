@@ -400,7 +400,7 @@ main {
 
     display: flex;
     align-items: center;
-    /* justify-content: space-between; */
+    justify-content: space-between;
 
     /* zorgt ervoor dat de tijd lijn achter de now playing verdwijnt */
     z-index: 2;
